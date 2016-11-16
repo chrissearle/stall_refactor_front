@@ -9,6 +9,11 @@ import {App} from './components/App'
 import {Home} from './components/Home'
 import {Navigation} from './components/Navigation'
 import {HorseList} from './components/HorseList'
+import {PeopleList} from './components/PeopleList'
+import {FeedList} from './components/FeedList'
+
+import 'jquery'
+import 'bootstrap-sass'
 
 import './styles/style.css.scss'
 
@@ -26,10 +31,10 @@ render((
             <Route path="/" component={App}>
                 <IndexRoute component={Home}/>
 
-                <Route path="/nav" component={Navigation}>
+                <Route component={Navigation}>
                     <Route path="/horses" component={HorseList}/>
-                    <Route path="/people" component={HorseList}/>
-                    <Route path="/feedTypes" component={HorseList}/>
+                    <Route path="/people" component={PeopleList}/>
+                    <Route path="/feedTypes" component={FeedList}/>
                 </Route>
             </Route>
         </Router>

@@ -97,11 +97,15 @@ div.row.padded {
   }
 }
 
-
 .small-nav {
   @extend .visible-xs;
 
   margin-top: 20px;
+
+  .default-btn {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 footer.footer {

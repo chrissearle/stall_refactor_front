@@ -28,6 +28,12 @@ export class Home extends React.Component {
                         </div>
                     </div>
                 </div>
+
+                <div className="row small-nav">
+                    <div className="col-xs-12">
+                        <Link className="default-btn" to="/horses">Hesteoversikt</Link>
+                    </div>
+                </div>
             </main>
 
             <footer className="footer">
