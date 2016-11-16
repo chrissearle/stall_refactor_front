@@ -1,7 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router'
+import {connect} from 'react-redux'
 
-export class Home extends React.Component {
+import {fetchManager} from '../action_creators/manager'
+
+export class ViewHome extends React.Component {
+    componentDidMount() {
+        this.props.updateManager()
+    }
+
     render() {
         return <div>
             <header role="banner">
@@ -23,7 +30,7 @@ export class Home extends React.Component {
                                 Stall Svarterud er en liten stall på Enebakkneset.
                             </p>
                             <p>
-                                Kontakt: Cecilie Taylor / 461 60 207
+                                Kontakt: { this.props.name } / { this.props.mobile }
                             </p>
                         </div>
                     </div>
@@ -48,3 +55,20 @@ export class Home extends React.Component {
         </div>
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        name: state.manager.name,
+        mobile: state.manager.mobile
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        updateManager: function () {
+            fetchManager()(dispatch)
+        }
+    }
+}
+
+export const Home = connect(mapStateToProps, mapDispatchToProps)(ViewHome)

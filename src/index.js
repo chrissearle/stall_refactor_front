@@ -12,12 +12,16 @@ import {HorseList} from './components/HorseList'
 import {PeopleList} from './components/PeopleList'
 import {FeedList} from './components/FeedList'
 
+import manager from './reducers/manager'
+
+
 import 'jquery'
 import 'bootstrap-sass'
 
 import './styles/style.css.scss'
 
 const reducer = combineReducers({
+    manager,
     routing: routerReducer
 })
 
