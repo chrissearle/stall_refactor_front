@@ -1,4 +1,4 @@
-/* globals document */
+/* globals document, window */
 
 import 'babel-polyfill'
 import React from 'react'
@@ -18,7 +18,7 @@ const reducer = combineReducers({
     routing: routerReducer
 })
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 const history = syncHistoryWithStore(browserHistory, store)
 
