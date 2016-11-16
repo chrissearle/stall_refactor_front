@@ -56,6 +56,12 @@ export class ViewHome extends React.Component {
     }
 }
 
+ViewHome.propTypes = {
+    name: React.PropTypes.string.isRequired,
+    mobile: React.PropTypes.string.isRequired,
+    updateManager: React.PropTypes.func.isRequired
+}
+
 function mapStateToProps(state) {
     return {
         name: state.manager.name,

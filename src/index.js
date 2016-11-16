@@ -13,6 +13,7 @@ import {PeopleList} from './components/PeopleList'
 import {FeedList} from './components/FeedList'
 
 import manager from './reducers/manager'
+import horses from './reducers/horses'
 
 
 import 'jquery'
@@ -22,6 +23,7 @@ import './styles/style.css.scss'
 
 const reducer = combineReducers({
     manager,
+    horses,
     routing: routerReducer
 })
 
