@@ -3,83 +3,89 @@ import {connect} from 'react-redux'
 
 import {fetchHorses} from '../action_creators/horses'
 
+import {Navigation} from './Navigation'
+import * as types from './types'
 
 class Horse extends React.Component {
     render() {
-        return <tr className="small-table-sep">
-                <td><a href="">{ this.props.horse.name }</a></td>
-                <td>{ this.props.horse.sex }</td>
-                <td>{ this.props.horse.race }</td>
-                <td className="hidden-xs">
-                    <a className="no-print" href=""> </a>
-                    <span className="print"> </span>
-                    <br/>
-                </td>
-                <td className="hidden-xs">
-                    <a className="no-print" href=""> </a>
-                    <span className="print"> </span>
-                    <br/>
-                </td>
-            </tr>
+        let owner = null
+        if (this.props.owner) {
+            owner = this.props.owner.name
+        }
+
+        let responsible = null
+        if (this.props.responsible) {
+            responsible = this.props.responsible.name
+        }
+
+        return <div className="object">
+            <h2>{ this.props.horse.name }</h2>
+            <dl>
+                <dt>{ this.props.horse.sex }</dt>
+                <dd>{ this.props.horse.race }</dd>
+                <dt>Eier</dt>
+                <dd>{ owner }</dd>
+                <dt>Ansvarlig</dt>
+                <dd>{ responsible }</dd>
+            </dl>
+        </div>
     }
 }
 
 Horse.propTypes = {
-    horse: React.PropTypes.shape({
-        ID: React.PropTypes.number.isRequired,
-        name: React.PropTypes.string.isRequired,
-        sex: React.PropTypes.string.isRequired,
-        race: React.PropTypes.string.isRequired
-    }).isRequired
+    horse: types.horse,
+    owner: types.person,
+    responsible: types.person
 }
 
 class ViewHorseList extends React.Component {
-    componentDidMount() {
-        this.props.updateHorses()
+    findPerson(id) {
+        if (this.props.people) {
+            return this.props.people.find((person) => person.ID === id)
+        }
+    }
+
+    renderHorse(horse) {
+        let owner = null
+        let responsible = null
+
+        if (horse.ownerID) {
+            owner = this.findPerson(horse.ownerID)
+        }
+
+        if (horse.responsibleID) {
+            responsible = this.findPerson(horse.responsibleID)
+        }
+
+        return <Horse key={`Horse:${horse.ID}`} horse={horse} owner={owner} responsible={responsible}/>
     }
 
     render() {
-        return <div className="row">
-            <div className="col-xs-12">
-                <h1 className="title">Hestene</h1>
-            </div>
+        return <div className="list">
+            <h1 className="title">Hestene</h1>
 
-            <div className="col-xs-12">
-                <table className="table table-bordered table-condensed table-hover table-responsive table-striped">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>Kjønn</th>
-                        <th>Rase</th>
-                        <th className="hidden-xs">Eier</th>
-                        <th className="hidden-xs">Ansvarlig</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {this.props.horses.map(horse =>
-                        <Horse key={`Horse:${horse.ID}`} horse={horse}/>
-                    )}
-                    </tbody>
-                </table>
+            <Navigation/>
+
+            <div className="objectList">
+                {this.props.horses.map(horse =>
+                    this.renderHorse(horse)
+                )}
             </div>
         </div>
     }
 }
 
 ViewHorseList.propTypes = {
-    horses: React.PropTypes.arrayOf(React.PropTypes.shape({
-        ID: React.PropTypes.number.isRequired,
-        name: React.PropTypes.string.isRequired,
-        sex: React.PropTypes.string.isRequired,
-        race: React.PropTypes.string.isRequired
-    })).isRequired,
+    horses: types.horses,
+    people: types.people,
     updateHorses: React.PropTypes.func.isRequired
 }
 
 
 function mapStateToProps(state) {
     return {
-        horses: state.horses.horses
+        horses: state.horses.horses,
+        people: state.people.people
     }
 }
 
@@ -92,14 +98,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export const HorseList = connect(mapStateToProps, mapDispatchToProps)(ViewHorseList)
-
-/*
- <tr className="small-table-row">
- <th>Eier</th>
- <td colSpan="2">
- <a className="no-print" href=""> </a>
- <span className="print"> </span>
- <br/>
- </td>
- </tr>
- */

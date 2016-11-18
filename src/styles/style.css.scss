@@ -1,145 +1,169 @@
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-@import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "~normalize.css";
 
-@font-face {
-  font-family: 'skater_parkregular';
-  src: url('../fonts/skaterpark-webfont.eot');
-  src: url('../fonts/skaterpark-webfont.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/skaterpark-webfont.woff2') format('woff2'),
-  url('../fonts/skaterpark-webfont.woff') format('woff'),
-  url('../fonts/skaterpark-webfont.ttf') format('truetype'),
-  url('../fonts/skaterpark-webfont.svg#skater_parkregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
+$color1: #FEFFFF;
+$color2: #DDF1F9;
+$color3: #A0D8EF;
+
+$gradientStart: $color1;
+$gradientMiddle: $color2;
+$gradientEnd: $color3;
+
+$objectOutline: $color3;
+$objectBackground: $color1;
+
+$background: $color2;
+$outline: $color3;
+$button: $color1;
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $background;
 }
 
-div.title {
-  font-family: 'skater_parkregular', serif;
+a {
+  font-weight: bold;
+}
 
-  h1 {
+main.frontpage {
+  background: url(../images/stallen.jpg) no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+
+  text-align: center;
+
+  div {
+    background: $gradientStart linear-gradient(to bottom, $gradientStart 0%, $gradientMiddle 35%, $gradientEnd 100%);
+    display: inline-block;
+    border: solid 2px $outline;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 10px;
+
     text-align: center;
-    font-weight: bold;
-    font-size: 40px;
+
+    h1 {
+      padding: 0;
+      margin: 0 50px 10px;
+    }
+
+    p {
+      padding: 0;
+      margin: 0 0 10px;
+    }
   }
 
   a {
-    text-decoration: none;
+    display: inline-block;
+
+    background: $button;
     color: black;
 
-    :hover, :visited, :link, :active {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+
+    padding: 10px;
+    border-radius: 10px;
+    border: solid 2px $outline;
+
+    text-decoration: none;
+  }
+}
+
+.list {
+  h1 {
+    padding: 20px 0 20px 20px;
+    margin: 0;
+    border-bottom: solid 1px $outline;
+    background: $gradientStart linear-gradient(to bottom, $gradientStart 0%, $gradientMiddle 35%, $gradientEnd 100%);
+  }
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  a {
+    display: inline-block;
+    padding: 10px;
+    margin: 0 10px 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    text-decoration: none;
+
+    background-color: $outline;
+
+    color: black;
+
+    &.active {
+      border-color: $outline;
+      background-color: $button;
+    }
+  }
+}
+
+.objectList {
+  width: 100vw;
+  margin: 0 20px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .object {
+    margin: 10px;
+    width: 350px;
+    border: 2px solid $objectOutline;
+    padding: 0 0 10px;
+    background-color: $objectBackground;
+    border-radius: 10px;
+
+    h2 {
+      margin: 0;
+      background-color: $objectOutline;
+      padding: 5px 5px 5px 10px;
+
       text-decoration: none;
     }
-  }
-}
 
-.jumbotron p {
-  text-align: center;
-}
+    dl {
+      display: block;
+      margin: 0;
+      padding: 10px;
+    }
 
-img.banner {
-  height: 300px;
-}
+    dt {
+      display: inline-block;
+      min-width: 80px;
+      word-wrap: break-word;
+      font-weight: bold;
+    }
 
+    dd {
+      margin-left: 0;
+      display: inline;
+      vertical-align: top;
+      line-height: 1.3;
+      font-style: italic;
+    }
 
-span.print {
-  display: none;
-}
+    dd:after {
+      content: '';
+      display: block;
+    }
 
-div.row.padded {
-  margin-top: 20px;
-}
+    h3 {
+      padding: 0px;
+      margin: 0px 0px 0px 10px;
+      font-size: 1em;
+    }
 
-
-.primary-btn {
-  @extend .btn;
-  @extend .btn-primary;
-  @extend .btn-xs;
-}
-
-.default-btn {
-  @extend .btn;
-  @extend .btn-default;
-  @extend .btn-xs;
-}
-
-.warning-btn {
-  @extend .btn;
-  @extend .btn-warning;
-  @extend .btn-xs;
-}
-
-.danger-btn {
-  @extend .btn;
-  @extend .btn-danger;
-  @extend .btn-xs;
-}
-
-.info-btn {
-  @extend .btn;
-  @extend .btn-info;
-  @extend .btn-xs;
-}
-
-@media(max-width:767px) {
-  .small-table-sep {
-    td {
-      border-top-width: 4px !important;
+    p {
+      padding: 0px;
+      margin: 10px;
     }
   }
-}
-.small-table-row {
-  @extend .hidden-sm;
-  @extend .hidden-md;
-  @extend .hidden-lg;
-
-  td.buttons {
-    text-align: right;
-  }
-}
-
-.small-nav {
-  @extend .visible-xs;
-
-  margin-top: 20px;
-
-  .default-btn {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-footer.footer {
-  @extend .hidden-xs;
-
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  background-color: #eeeeee;
-  padding-top: 20px;
-  border-top: solid 1px #dddddd;
-}
-
-@media print {
-  @page {size: portrait}
-
-  nav {
-    display: none;
-  }
-  .no-print {
-    display: none;
-  }
-  h1.title {
-    font-family: 'skater_parkregular', serif;
-  }
-  span.print {
-    display: inline;
-  }
-  body.admin main {
-    margin-top: 0;
-  }
-}
-
-body div.admin main {
-  margin-top: 70px; // accommodate the navbar
 }

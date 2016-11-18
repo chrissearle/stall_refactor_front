@@ -7,23 +7,21 @@ import {Provider} from 'react-redux'
 import {syncHistoryWithStore, routerReducer} from 'react-router-redux'
 import {App} from './components/App'
 import {Home} from './components/Home'
-import {Navigation} from './components/Navigation'
+import {Loader} from './components/Loader'
 import {HorseList} from './components/HorseList'
 import {PeopleList} from './components/PeopleList'
 import {FeedList} from './components/FeedList'
 
 import manager from './reducers/manager'
 import horses from './reducers/horses'
-
-
-import 'jquery'
-import 'bootstrap-sass'
+import people from './reducers/people'
 
 import './styles/style.css.scss'
 
 const reducer = combineReducers({
     manager,
     horses,
+    people,
     routing: routerReducer
 })
 
@@ -37,7 +35,7 @@ render((
             <Route path="/" component={App}>
                 <IndexRoute component={Home}/>
 
-                <Route component={Navigation}>
+                <Route component={Loader}>
                     <Route path="/horses" component={HorseList}/>
                     <Route path="/people" component={PeopleList}/>
                     <Route path="/feedTypes" component={FeedList}/>
