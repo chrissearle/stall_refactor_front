@@ -1,8 +1,8 @@
 var webpack = require('webpack');
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
     entry: [
-        'bootstrap-loader',
         './src/index.js'
     ],
 
@@ -25,10 +25,16 @@ module.exports = {
             },
             {test: /\.css$/, loaders: ['style', 'css', 'postcss']},
             {test: /\.scss$/, loaders: ['style', 'css', 'postcss', 'sass']},
-            {test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url-loader?limit=10000'},
+            {test: /\.(woff2?|ttf|eot|svg|png|jpg)$/, loader: 'url-loader?limit=10000'},
             {test: /bootstrap-sass\/assets\/javascripts\//, loader: 'imports?jQuery=jquery'}
         ]
     },
+
+    postcss: [
+        autoprefixer({
+            browsers: ['> 5%']
+        })
+    ],
 
     plugins: [
         new webpack.DefinePlugin({

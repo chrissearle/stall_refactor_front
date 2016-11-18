@@ -23,8 +23,8 @@ module.exports = {
                     presets: ['es2015', 'react']
                 }
             },
-            {test: /\.css$/, loaders: ['style', 'postcss', 'css']},
-            {test: /\.scss$/, loaders: ['style', 'postcss', 'css', 'sass']},
+            {test: /\.css$/, loaders: ['style', 'css', 'postcss']},
+            {test: /\.scss$/, loaders: ['style', 'css', 'postcss', 'sass']},
             {test: /\.(woff2?|ttf|eot|svg|png|jpg)$/, loader: 'url-loader?limit=10000'},
             {test: /bootstrap-sass\/assets\/javascripts\//, loader: 'imports?jQuery=jquery'}
         ]
@@ -32,7 +32,7 @@ module.exports = {
 
     postcss: [
         autoprefixer({
-            browsers: ['last 2 versions']
+            browsers: ['> 5%']
         })
     ],
 
