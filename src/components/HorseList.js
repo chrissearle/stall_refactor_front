@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router'
 
 import {fetchHorses} from '../action_creators/horses'
 
@@ -19,7 +20,7 @@ class Horse extends React.Component {
         }
 
         return <div className="object">
-            <h2>{ this.props.horse.name }</h2>
+            <h2><Link to={`/horse/${this.props.horse.ID}`}>{ this.props.horse.name }</Link></h2>
             <dl>
                 <dt>{ this.props.horse.sex }</dt>
                 <dd>{ this.props.horse.race }</dd>
@@ -29,6 +30,7 @@ class Horse extends React.Component {
                 <dd>{ responsible }</dd>
             </dl>
         </div>
+
     }
 }
 
@@ -57,7 +59,7 @@ class ViewHorseList extends React.Component {
             responsible = this.findPerson(horse.responsibleID)
         }
 
-        return <Horse key={`Horse:${horse.ID}`} horse={horse} owner={owner} responsible={responsible}/>
+        return <Horse key={`Horse:${horse.ID}`} horse={horse} owner={owner} responsible={responsible} />
     }
 
     render() {

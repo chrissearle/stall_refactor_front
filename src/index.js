@@ -9,6 +9,7 @@ import {App} from './components/App'
 import {Home} from './components/Home'
 import {Loader} from './components/Loader'
 import {HorseList} from './components/HorseList'
+import {HorseDetail} from './components/HorseDetail'
 import {PeopleList} from './components/PeopleList'
 import {FeedList} from './components/FeedList'
 
@@ -37,6 +38,7 @@ render((
 
                 <Route component={Loader}>
                     <Route path="/horses" component={HorseList}/>
+                    <Route path="/horse/:id" component={HorseDetail}/>
                     <Route path="/people" component={PeopleList}/>
                     <Route path="/feedTypes" component={FeedList}/>
                 </Route>

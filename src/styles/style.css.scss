@@ -80,6 +80,15 @@ main.frontpage {
   }
 }
 
+.detail {
+  h1 {
+    padding: 20px 0 20px 20px;
+    margin: 0;
+    border-bottom: solid 1px $outline;
+    background: $gradientStart linear-gradient(to bottom, $gradientStart 0%, $gradientMiddle 35%, $gradientEnd 100%);
+  }
+}
+
 .navigation {
   display: flex;
   justify-content: center;
@@ -126,7 +135,10 @@ main.frontpage {
       background-color: $objectOutline;
       padding: 5px 5px 5px 10px;
 
-      text-decoration: none;
+      a {
+        text-decoration: none;
+        color: black;
+      }
     }
 
     dl {
