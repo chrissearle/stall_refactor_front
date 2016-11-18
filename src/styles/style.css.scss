@@ -141,6 +141,10 @@ main.frontpage {
       }
     }
 
+    a {
+      color: darken($outline, 50%);
+    }
+
     dl {
       display: block;
       margin: 0;
@@ -176,6 +180,11 @@ main.frontpage {
     p {
       padding: 0px;
       margin: 10px;
+
+      a {
+        display: inline-block;
+        margin-right: 5px;
+      }
     }
   }
 }

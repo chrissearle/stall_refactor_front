@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router'
 
 import {fetchPeople} from '../action_creators/people'
 
@@ -9,7 +10,9 @@ import * as types from './types'
 class Horses extends React.Component {
     render() {
         return <p>
-            {this.props.horses.map(horse => horse.name).join(', ')}
+            {this.props.horses.map(horse =>
+                <Link to={`/horse/${horse.ID}`}>{ horse.name }</Link>
+            )}
         </p>
     }
 }
