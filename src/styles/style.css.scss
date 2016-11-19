@@ -15,6 +15,8 @@ $background: $color2;
 $outline: $color3;
 $button: $color1;
 
+$corner: 6px;
+
 body {
   margin: 0;
   padding: 0;
@@ -38,7 +40,7 @@ main.frontpage {
     border: solid 2px $outline;
     padding: 20px;
     margin-top: 50px;
-    border-radius: 10px;
+    border-radius: $corner;
 
     text-align: center;
 
@@ -64,7 +66,7 @@ main.frontpage {
     right: 20px;
 
     padding: 10px;
-    border-radius: 10px;
+    border-radius: $corner;
     border: solid 2px $outline;
 
     text-decoration: none;
@@ -98,8 +100,8 @@ main.frontpage {
     display: inline-block;
     padding: 10px;
     margin: 0 10px 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: $corner;
+    border-bottom-right-radius: $corner;
     width: 70px;
     text-align: center;
 
@@ -130,7 +132,8 @@ main.frontpage {
     border: 2px solid $objectOutline;
     padding: 0 0 10px;
     background-color: $objectBackground;
-    border-radius: 10px;
+    border-radius: $corner;
+    box-shadow: 4px 4px 4px 0px darken($objectOutline, 20%);
 
     h2 {
       margin: 0;
