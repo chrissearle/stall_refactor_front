@@ -8,26 +8,24 @@ import {Navigation} from './Navigation'
 import * as types from './types'
 
 class Horse extends React.Component {
+    renderPerson(person) {
+        if (person) {
+            return <Link to={`/person/${person.ID}` }>
+                { person.name }
+            </Link>
+        }
+    }
+
     render() {
-        let owner = null
-        if (this.props.owner) {
-            owner = this.props.owner.name
-        }
-
-        let responsible = null
-        if (this.props.responsible) {
-            responsible = this.props.responsible.name
-        }
-
         return <div className="object">
             <h2><Link to={`/horse/${this.props.horse.ID}`}>{ this.props.horse.name }</Link></h2>
             <dl>
                 <dt>{ this.props.horse.sex }</dt>
                 <dd>{ this.props.horse.race }</dd>
                 <dt>Eier</dt>
-                <dd>{ owner }</dd>
+                <dd>{ this.renderPerson(this.props.owner) }</dd>
                 <dt>Ansvarlig</dt>
-                <dd>{ responsible }</dd>
+                <dd>{ this.renderPerson(this.props.responsible) }</dd>
             </dl>
         </div>
 
