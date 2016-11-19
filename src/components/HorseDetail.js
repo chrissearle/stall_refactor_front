@@ -23,7 +23,6 @@ class ViewHorseDetail extends React.Component {
     render() {
         let horse = this.findHorse(parseInt(this.props.params.id))
 
-        console.log(horse)
         return <div className="detail">
             {this.renderHorse(horse)}
         </div>

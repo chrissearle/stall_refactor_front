@@ -11,6 +11,7 @@ import {Loader} from './components/Loader'
 import {HorseList} from './components/HorseList'
 import {HorseDetail} from './components/HorseDetail'
 import {PeopleList} from './components/PeopleList'
+import {PersonDetail} from './components/PersonDetail'
 import {FeedList} from './components/FeedList'
 
 import manager from './reducers/manager'
@@ -40,6 +41,7 @@ render((
                     <Route path="/horses" component={HorseList}/>
                     <Route path="/horse/:id" component={HorseDetail}/>
                     <Route path="/people" component={PeopleList}/>
+                    <Route path="/person/:id" component={PersonDetail}/>
                     <Route path="/feedTypes" component={FeedList}/>
                 </Route>
             </Route>
