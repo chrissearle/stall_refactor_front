@@ -6,6 +6,7 @@ import {fetchHorses} from '../action_creators/horses'
 
 import {Navigation} from './Navigation'
 import * as types from './types'
+import {findOwner, findResponsible} from '../helpers'
 
 class Horse extends React.Component {
     renderPerson(person) {
@@ -39,23 +40,9 @@ Horse.propTypes = {
 }
 
 class ViewHorseList extends React.Component {
-    findPerson(id) {
-        if (this.props.people) {
-            return this.props.people.find((person) => person.ID === id)
-        }
-    }
-
     renderHorse(horse) {
-        let owner = null
-        let responsible = null
-
-        if (horse.ownerID) {
-            owner = this.findPerson(horse.ownerID)
-        }
-
-        if (horse.responsibleID) {
-            responsible = this.findPerson(horse.responsibleID)
-        }
+        const owner = findOwner(this.props.people, horse)
+        const responsible = findResponsible(this.props.people, horse)
 
         return <Horse key={`Horse:${horse.ID}`} horse={horse} owner={owner} responsible={responsible} />
     }

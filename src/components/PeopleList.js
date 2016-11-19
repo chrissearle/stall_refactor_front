@@ -1,48 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router'
 import {fetchPeople} from '../action_creators/people'
 import {Navigation} from './Navigation'
 import * as types from './types'
-import {formatTlf} from '../formatters'
-
-class Person extends React.Component {
-    render() {
-        let role = null
-
-        if (this.props.person.role) {
-            role = <span>
-                &nbsp;
-                ({this.props.person.role})
-            </span>
-        }
-
-        let email = null
-
-        if (this.props.person.email) {
-            email = <a href={ `mailto:${this.props.person.email}`}>{this.props.person.email}</a>
-        }
-
-        return <div className="object">
-            <h2>
-                <Link to={`/person/${this.props.person.ID}` }>
-                    { this.props.person.name }
-                    { role }
-                </Link>
-            </h2>
-            <dl>
-                <dt>Mob:</dt>
-                <dd>{ formatTlf(this.props.person.mobile) }</dd>
-                <dt>Email</dt>
-                <dd>{ email }</dd>
-            </dl>
-        </div>
-    }
-}
-
-Person.propTypes = {
-    person: types.person
-}
+import {Person} from './Person'
 
 class ViewPeopleList extends React.Component {
     render() {

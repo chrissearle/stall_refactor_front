@@ -2,11 +2,15 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Navigation} from './Navigation'
 import * as types from './types'
+import {findHorse, findOwner, findResponsible, findVeterinary, findFarrier} from '../helpers'
+import {Person} from './Person'
 
 class ViewHorseDetail extends React.Component {
-    findHorse(id) {
-        if (this.props.horses && this.props.horses.length > 0) {
-            return this.props.horses.find((horse) => horse.ID === id)
+    renderPerson(person, title) {
+        if (person) {
+            return <div className="object">
+                <h2>{ title }</h2>
+            </div>
         }
     }
 
@@ -16,15 +20,45 @@ class ViewHorseDetail extends React.Component {
                 <h1 className="title">{ horse.name }</h1>
 
                 <Navigation/>
+
+                <div className="objectList">
+                    <div className="object">
+                        <h2>Kjønn</h2>
+
+                        <p>{ horse.sex }</p>
+                    </div>
+
+                    <div className="object">
+                        <h2>Født</h2>
+
+                        <p>{ horse.born }</p>
+                    </div>
+
+                    <div className="object">
+                        <h2>Rase</h2>
+
+                        <p>{ horse.race }</p>
+                    </div>
+                </div>
+
+                <div className="separator"/>
+
+                <div className="objectList">
+                    <Person person={findOwner(this.props.people, horse)} title="Eier"/>
+                    <Person person={findResponsible(this.props.people, horse)} title="Ansvarlig"/>
+                    <Person person={findVeterinary(this.props.people, horse)} title="Veterinær"/>
+                    <Person person={findFarrier(this.props.people, horse)} title="Hovslager"/>
+                </div>
+
+                <div className="separator"/>
+
             </div>
         }
     }
 
     render() {
-        let horse = this.findHorse(parseInt(this.props.params.id))
-
-        return <div className="detail">
-            {this.renderHorse(horse)}
+        return <div className=" detail">
+            {this.renderHorse(findHorse(this.props.horses, this.props.params.id))}
         </div>
     }
 }

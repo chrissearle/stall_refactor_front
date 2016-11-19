@@ -4,35 +4,9 @@ import {Navigation} from './Navigation'
 import * as types from './types'
 import {formatTlf} from '../formatters'
 import {Link} from 'react-router'
-
+import {findPerson, findHorsesOwned, findHorsesResponsible} from '../helpers'
 
 class ViewPersonDetail extends React.Component {
-    findPerson(id) {
-        if (this.props.people && this.props.people.length > 0) {
-            return this.props.people.find((person) => person.ID === id)
-        }
-    }
-
-    findHorsesOwned(person) {
-        let horses = []
-
-        if (person) {
-            horses = this.props.horses.filter((horse) => horse.ownerID === person.ID)
-        }
-
-        return horses
-    }
-
-    findHorsesResponsibleFor(person) {
-        let horses = []
-
-        if (person) {
-            horses = this.props.horses.filter((horse) => horse.responsibleID === person.ID)
-        }
-
-        return horses
-    }
-
     renderHorses(horses, title) {
         if (horses && horses.length > 0) {
             return <div className="object">
@@ -71,8 +45,8 @@ class ViewPersonDetail extends React.Component {
                 </div>
 
                 <div className="objectList">
-                    { this.renderHorses(this.findHorsesOwned(person), 'Eier av')}
-                    { this.renderHorses(this.findHorsesResponsibleFor(person), 'Ansvarlig for')}
+                    { this.renderHorses(findHorsesOwned(this.props.horses, person), 'Eier av')}
+                    { this.renderHorses(findHorsesResponsible(this.props.horses, person), 'Ansvarlig for')}
                 </div>
             </div>
         }
@@ -91,7 +65,7 @@ class ViewPersonDetail extends React.Component {
     }
 
     render() {
-        let person = this.findPerson(parseInt(this.props.params.id))
+        const person = findPerson(this.props.people, this.props.params.id)
 
         return <div className="detail">
             {this.renderPerson(person)}

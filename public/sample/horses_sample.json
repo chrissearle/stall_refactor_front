@@ -4,7 +4,10 @@
     "name": "Horse",
     "sex": "VALLAK",
     "race": "Dartmoor",
+    "born": 2001,
     "ownerID": 1,
-    "responsibleID": 1
+    "responsibleID": 1,
+    "veterinaryID": 1,
+    "farrierID": 1
   }
 ]
