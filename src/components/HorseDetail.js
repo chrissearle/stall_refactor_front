@@ -45,7 +45,10 @@ class ViewHorseDetail extends React.Component {
 
                 <div className="objectList">
                     <Person person={findOwner(this.props.people, horse)} title="Eier"/>
-                    <Person person={findResponsible(this.props.people, horse)} title="Ansvarlig"/>
+                    {
+                        (horse.ownerID !== horse.responsibleID) &&
+                        <Person person={findResponsible(this.props.people, horse)} title="Ansvarlig"/>
+                    }
                     <Person person={findVeterinary(this.props.people, horse)} title="Veterinær"/>
                     <Person person={findFarrier(this.props.people, horse)} title="Hovslager"/>
                 </div>

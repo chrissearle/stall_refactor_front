@@ -23,10 +23,20 @@ class Horse extends React.Component {
             <dl>
                 <dt>{ this.props.horse.sex }</dt>
                 <dd>{ this.props.horse.race }</dd>
-                <dt>Eier</dt>
-                <dd>{ this.renderPerson(this.props.owner) }</dd>
-                <dt>Ansvarlig</dt>
-                <dd>{ this.renderPerson(this.props.responsible) }</dd>
+                {
+                    this.props.owner &&
+                    [
+                        <dt>Eier</dt>,
+                        <dd> {this.renderPerson(this.props.owner) }</dd>
+                    ]
+                }
+                {
+                    this.props.responsible &&
+                    [
+                        <dt>Ansvarlig</dt>,
+                        <dd>{ this.renderPerson(this.props.responsible) }</dd>
+                    ]
+                }
             </dl>
         </div>
 
@@ -42,9 +52,14 @@ Horse.propTypes = {
 class ViewHorseList extends React.Component {
     renderHorse(horse) {
         const owner = findOwner(this.props.people, horse)
-        const responsible = findResponsible(this.props.people, horse)
 
-        return <Horse key={`Horse:${horse.ID}`} horse={horse} owner={owner} responsible={responsible} />
+        let responsible = null
+
+        if (horse.ownerID !== horse.responsibleID) {
+            responsible = findResponsible(this.props.people, horse)
+        }
+
+        return <Horse key={`Horse:${horse.ID}`} horse={horse} owner={owner} responsible={responsible}/>
     }
 
     render() {
