@@ -1,45 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
-
 import {fetchPeople} from '../action_creators/people'
-
 import {Navigation} from './Navigation'
 import * as types from './types'
-
-class Horses extends React.Component {
-    render() {
-        return <p>
-            {this.props.horses.map(horse =>
-                <Link to={`/horse/${horse.ID}`}>{ horse.name }</Link>
-            )}
-        </p>
-    }
-}
-
-Horses.propTypes = {
-    horses: types.horses
-}
+import {formatTlf} from '../formatters'
 
 class Person extends React.Component {
-    renderOwned() {
-        if (this.props.owned && this.props.owned.length > 0) {
-            return <div>
-                <h3>Eier av:</h3>
-                <Horses horses={ this.props.owned }/>
-            </div>
-        }
-    }
-
-    renderResponsible() {
-        if (this.props.responsible && this.props.responsible.length > 0) {
-            return <div>
-                <h3>Ansvarlig for:</h3>
-                <Horses horses={ this.props.responsible }/>
-            </div>
-        }
-    }
-
     render() {
         let role = null
 
@@ -58,48 +25,26 @@ class Person extends React.Component {
 
         return <div className="object">
             <h2>
-                { this.props.person.name }
-                { role }
+                <Link to={`/person/${this.props.person.ID}` }>
+                    { this.props.person.name }
+                    { role }
+                </Link>
             </h2>
             <dl>
                 <dt>Mob:</dt>
-                <dd>{ this.props.person.mobile }</dd>
+                <dd>{ formatTlf(this.props.person.mobile) }</dd>
                 <dt>Email</dt>
                 <dd>{ email }</dd>
             </dl>
-            { this.renderOwned() }
-            { this.renderResponsible() }
         </div>
     }
 }
 
 Person.propTypes = {
-    person: types.person,
-    owned: types.horses,
-    responsible: types.horses
+    person: types.person
 }
 
 class ViewPeopleList extends React.Component {
-    findHorsesOwned(person) {
-        let horses = []
-
-        if (person) {
-            horses = this.props.horses.filter((horse) => horse.ownerID === person.ID)
-        }
-
-        return horses
-    }
-
-    findHorsesResponsibleFor(person) {
-        let horses = []
-
-        if (person) {
-            horses = this.props.horses.filter((horse) => horse.responsibleID === person.ID)
-        }
-
-        return horses
-    }
-
     render() {
         return <div className="list">
             <h1 className="title">Folk</h1>
@@ -108,8 +53,7 @@ class ViewPeopleList extends React.Component {
 
             <div className="objectList">
                 {this.props.people.map(person =>
-                    <Person key={`Person:${person.ID}`} person={person} owned={this.findHorsesOwned(person)}
-                            responsible={this.findHorsesResponsibleFor(person)}/>
+                    <Person key={`Person:${person.ID}`} person={person}/>
                 )}
             </div>
         </div>
@@ -118,15 +62,13 @@ class ViewPeopleList extends React.Component {
 
 ViewPeopleList.propTypes = {
     people: types.people,
-    horses: types.horses,
     updatePeople: React.PropTypes.func.isRequired
 }
 
 
 function mapStateToProps(state) {
     return {
-        people: state.people.people,
-        horses: state.horses.horses
+        people: state.people.people
     }
 }
 
