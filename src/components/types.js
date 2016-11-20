@@ -1,12 +1,14 @@
 import React from 'react'
 
-export const person = React.PropTypes.shape({
+export const optionalPerson = React.PropTypes.shape({
     ID: React.PropTypes.number.isRequired,
     name: React.PropTypes.string.isRequired,
     mobile: React.PropTypes.number.isRequired,
     role: React.PropTypes.string,
     email: React.PropTypes.string
-}).isRequired
+})
+
+export const person = optionalPerson.isRequired
 
 export const people = React.PropTypes.arrayOf(person).isRequired
 

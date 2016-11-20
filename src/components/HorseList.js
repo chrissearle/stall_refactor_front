@@ -26,15 +26,15 @@ class Horse extends React.Component {
                 {
                     this.props.owner &&
                     [
-                        <dt>Eier</dt>,
-                        <dd> {this.renderPerson(this.props.owner) }</dd>
+                        <dt key={`Owner1:${this.props.horse.ID}`}>Eier</dt>,
+                        <dd key={`Owner2:${this.props.horse.ID}`}> {this.renderPerson(this.props.owner) }</dd>
                     ]
                 }
                 {
                     this.props.responsible &&
                     [
-                        <dt>Ansvarlig</dt>,
-                        <dd>{ this.renderPerson(this.props.responsible) }</dd>
+                        <dt key={`Responsible1:${this.props.horse.ID}`}>Ansvarlig</dt>,
+                        <dd key={`Responsible2:${this.props.horse.ID}`}>{ this.renderPerson(this.props.responsible) }</dd>
                     ]
                 }
             </dl>
@@ -46,7 +46,7 @@ class Horse extends React.Component {
 Horse.propTypes = {
     horse: types.horse,
     owner: types.person,
-    responsible: types.person
+    responsible: types.optionalPerson
 }
 
 class ViewHorseList extends React.Component {
