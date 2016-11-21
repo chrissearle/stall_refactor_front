@@ -7,7 +7,7 @@ import {Person} from './Person'
 
 class HorseNotes extends React.Component {
     render() {
-        return <div className="objectWide">
+        return <div className="objectWide noPrint">
 
             <div className="object">
                 <h2>Notes</h2>
@@ -78,7 +78,7 @@ class ViewHorseDetail extends React.Component {
                 </div>
 
                 <div className="separator"/>
-                <div className="separator"/>
+                <div className="separator noPrint"/>
 
                 <HorseNotes notes={horse.notes}/>
             </div>
