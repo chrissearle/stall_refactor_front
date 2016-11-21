@@ -87,52 +87,24 @@ main.frontpage {
   }
 }
 
-.list {
+.page {
   h1 {
     padding: 20px 0 20px 20px;
     margin: 0;
     border-bottom: solid 1px $outline;
     background: $gradientStart linear-gradient(to bottom, $gradientStart 0%, $gradientMiddle 35%, $gradientEnd 100%);
   }
+}
+
+.list {
+  @extend .page;
 }
 
 .detail {
-  h1 {
-    padding: 20px 0 20px 20px;
-    margin: 0;
-    border-bottom: solid 1px $outline;
-    background: $gradientStart linear-gradient(to bottom, $gradientStart 0%, $gradientMiddle 35%, $gradientEnd 100%);
-  }
+  @extend .page;
 }
 
-.navigation {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  a {
-    @extend .link;
-
-    display: inline-block;
-    padding: 10px;
-    margin: 0 10px 10px;
-    border-bottom-left-radius: $corner;
-    border-bottom-right-radius: $corner;
-    width: 100px;
-    text-align: center;
-    font-weight: bold;
-
-    background-color: $outline;
-    color: black;
-
-    &.active {
-      border-color: $outline;
-      background-color: $button;
-    }
-  }
-}
-
-.objectList {
+.flexList {
   width: 100vw;
   margin: 0;
   padding: 0;
@@ -142,7 +114,6 @@ main.frontpage {
 
   .object {
     margin: 10px;
-    width: 350px;
     border: 1px solid $objectOutline;
     padding: 0;
     background-color: $objectBackground;
@@ -208,6 +179,51 @@ main.frontpage {
         @extend .link;
       }
     }
+  }
+}
+
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  a {
+    @extend .link;
+
+    display: inline-block;
+    padding: 10px;
+    margin: 0 10px 10px;
+    border-bottom-left-radius: $corner;
+    border-bottom-right-radius: $corner;
+    width: 100px;
+    text-align: center;
+    font-weight: bold;
+
+    background-color: $outline;
+    color: black;
+
+    &.active {
+      border-color: $outline;
+      background-color: $button;
+    }
+  }
+}
+
+.objectList {
+  @extend .flexList;
+
+  .object {
+    width: 350px;
+  }
+}
+
+.objectWide {
+  @extend .flexList;
+
+  .object {
+    width: 50%;
+    min-width: 350px;
   }
 }
 

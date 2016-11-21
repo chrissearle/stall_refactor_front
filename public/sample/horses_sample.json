@@ -8,6 +8,12 @@
     "ownerID": 1,
     "responsibleID": 1,
     "veterinaryID": 1,
-    "farrierID": 1
+    "farrierID": 1,
+    "notes": [
+      {
+        "timestamp": "2016-11-10",
+        "text": "Test text"
+      }
+    ]
   }
 ]

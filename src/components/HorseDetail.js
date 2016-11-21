@@ -5,6 +5,30 @@ import * as types from './types'
 import {findHorse, findOwner, findResponsible, findVeterinary, findFarrier} from '../helpers'
 import {Person} from './Person'
 
+class HorseNotes extends React.Component {
+    render() {
+        return <div className="objectWide">
+
+            <div className="object">
+                <h2>Notes</h2>
+
+                <dl>
+                    {this.props.notes && this.props.notes.map(note =>
+                        [
+                            <dt>{ note.timestamp }</dt>,
+                            <dd> {note.text }</dd>
+                        ]
+                    )}
+                </dl>
+            </div>
+        </div>
+    }
+}
+
+HorseNotes.propTypes = {
+    notes: types.notes
+}
+
 class ViewHorseDetail extends React.Component {
     renderPerson(person, title) {
         if (person) {
@@ -54,7 +78,9 @@ class ViewHorseDetail extends React.Component {
                 </div>
 
                 <div className="separator"/>
+                <div className="separator"/>
 
+                <HorseNotes notes={horse.notes}/>
             </div>
         }
     }
