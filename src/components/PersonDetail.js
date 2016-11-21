@@ -4,7 +4,7 @@ import {Navigation} from './Navigation'
 import * as types from './types'
 import {formatTlf} from '../formatters'
 import {Link} from 'react-router'
-import {findPerson, findHorsesOwned, findHorsesResponsible} from '../helpers'
+import {findPerson, findHorsesOwned, findHorsesResponsible, findHorsesVeterinary, findHorsesFarrier} from '../helpers'
 
 class ViewPersonDetail extends React.Component {
     renderHorses(horses, title) {
@@ -47,6 +47,8 @@ class ViewPersonDetail extends React.Component {
                 <div className="objectList">
                     { this.renderHorses(findHorsesOwned(this.props.horses, person), 'Eier av')}
                     { this.renderHorses(findHorsesResponsible(this.props.horses, person), 'Ansvarlig for')}
+                    { this.renderHorses(findHorsesVeterinary(this.props.horses, person), 'Veterinær for')}
+                    { this.renderHorses(findHorsesFarrier(this.props.horses, person), 'Hovslager for')}
                 </div>
             </div>
         }

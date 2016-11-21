@@ -11,20 +11,32 @@ $gradientEnd: $color3;
 $objectOutline: $color3;
 $objectBackground: $color1;
 
+$dark: darken($objectOutline, 20%);
+
 $background: $color2;
 $outline: $color3;
 $button: $color1;
 
-$corner: 6px;
+$corner: 5px;
+
+.link {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $dark;
+}
+
+.link.email {
+  text-transform: lowercase;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   padding: 0;
   background-color: $background;
-}
-
-a {
-  font-weight: bold;
 }
 
 main.frontpage {
@@ -37,7 +49,7 @@ main.frontpage {
   div {
     background: $gradientStart linear-gradient(to bottom, $gradientStart 0%, $gradientMiddle 35%, $gradientEnd 100%);
     display: inline-block;
-    border: solid 2px $outline;
+    border: solid 1px $outline;
     padding: 20px;
     margin-top: 50px;
     border-radius: $corner;
@@ -58,6 +70,8 @@ main.frontpage {
   a {
     display: inline-block;
 
+    font-weight: bold;
+
     background: $button;
     color: black;
 
@@ -67,7 +81,7 @@ main.frontpage {
 
     padding: 10px;
     border-radius: $corner;
-    border: solid 2px $outline;
+    border: solid 1px $outline;
 
     text-decoration: none;
   }
@@ -97,18 +111,18 @@ main.frontpage {
   flex-wrap: wrap;
 
   a {
+    @extend .link;
+
     display: inline-block;
     padding: 10px;
     margin: 0 10px 10px;
     border-bottom-left-radius: $corner;
     border-bottom-right-radius: $corner;
-    width: 70px;
+    width: 100px;
     text-align: center;
-
-    text-decoration: none;
+    font-weight: bold;
 
     background-color: $outline;
-
     color: black;
 
     &.active {
@@ -129,11 +143,11 @@ main.frontpage {
   .object {
     margin: 10px;
     width: 350px;
-    border: 2px solid $objectOutline;
-    padding: 0 0 10px;
+    border: 1px solid $objectOutline;
+    padding: 0;
     background-color: $objectBackground;
     border-radius: $corner;
-    box-shadow: 4px 4px 4px 0px darken($objectOutline, 20%);
+    box-shadow: 2px 2px 2px 0px $dark;
 
     h2 {
       margin: 0;
@@ -152,33 +166,27 @@ main.frontpage {
     }
 
     a {
-      color: darken($outline, 50%);
+      @extend .link;
     }
 
     dl {
-      display: block;
-      margin: 0;
-      padding: 10px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
     }
 
     dt {
-      display: inline-block;
-      min-width: 80px;
-      word-wrap: break-word;
+      flex: 1 1 22%;
       font-weight: bold;
+      position: relative;
+      padding-left: 10px;
+      margin-top: 10px;
     }
 
     dd {
-      margin-left: 0;
-      display: inline;
-      vertical-align: top;
-      line-height: 1.3;
-      font-style: italic;
-    }
-
-    dd:after {
-      content: '';
-      display: block;
+      flex: 1 1 78%;
+      padding-left: 12px;
+      margin: 10px 0 0;
     }
 
     p {
@@ -190,15 +198,25 @@ main.frontpage {
         margin-right: 5px;
       }
     }
+
+    p.actions {
+      padding: 10px;
+      margin: 0;
+      border-top: solid 1px $objectOutline;
+
+      a {
+        @extend .link;
+      }
+    }
   }
 }
 
 .separator {
   display: block;
   height: 1px;
-  background-color: darken($objectOutline, 20%);
+  background-color: $dark;
   margin: 20px;
-  box-shadow: 0px 0px 4px 1px darken($objectOutline, 20%);
+  box-shadow: 0px 0px 2px 1px $dark;
 }
 
 @media print {
@@ -253,6 +271,10 @@ main.frontpage {
       }
 
       border: solid 1px lightgrey;
+
+      p.actions {
+        display: none;
+      }
     }
   }
 }

@@ -14,21 +14,13 @@ export class Person extends React.Component {
                 role = <span>&nbsp;({this.props.person.role})</span>
             }
 
-            return <h2>
-                <Link to={`/person/${this.props.person.ID}` }>
-                    { person.name }{ role }
-                </Link>
-            </h2>
+            return <h2>{ person.name }{ role }</h2>
         }
     }
 
     renderName(person, title) {
         if (title) {
-            return <h3>
-                <Link to={`/person/${this.props.person.ID}` }>
-                    { person.name }
-                </Link>
-            </h3>
+            return <h3>{ person.name }</h3>
         }
     }
 
@@ -36,7 +28,7 @@ export class Person extends React.Component {
         let email = null
 
         if (this.props.person.email) {
-            email = <a href={ `mailto:${this.props.person.email}`}>{this.props.person.email}</a>
+            email = <a className="email" href={ `mailto:${this.props.person.email}`}>{this.props.person.email}</a>
         }
 
         return <div className="object">
@@ -48,6 +40,10 @@ export class Person extends React.Component {
                 <dt>Email</dt>
                 <dd>{ email }</dd>
             </dl>
+
+            <p className="actions">
+                <Link to={`/person/${this.props.person.ID}` }>Details</Link>
+            </p>
         </div>
     }
 }

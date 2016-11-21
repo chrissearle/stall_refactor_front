@@ -19,7 +19,7 @@ class Horse extends React.Component {
 
     render() {
         return <div className="object">
-            <h2><Link to={`/horse/${this.props.horse.ID}`}>{ this.props.horse.name }</Link></h2>
+            <h2>{ this.props.horse.name }</h2>
             <dl>
                 <dt>{ this.props.horse.sex }</dt>
                 <dd>{ this.props.horse.race }</dd>
@@ -38,6 +38,7 @@ class Horse extends React.Component {
                     ]
                 }
             </dl>
+            <p className="actions"><Link to={`/horse/${this.props.horse.ID}`}>Details</Link></p>
         </div>
 
     }
